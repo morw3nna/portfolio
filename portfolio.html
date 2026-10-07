@@ -1,0 +1,442 @@
+<title>Anastasija Vitas Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap">
+<style>
+
+:root {
+  --bg: #14092E;
+  --panel: #231352;
+  --well: #0B0420;
+  --ink: #F4F0FF;
+  --dim: #B3A6E8;
+  --cyan: #29F0FF;
+  --mag: #FF3D9A;
+  --yel: #FFD84A;
+  --grn: #5DFF6E;
+  --black: #000000;
+  --px: 4px;
+  --display: "Press Start 2P", "Courier New", monospace;
+  --body: "VT323", "Courier New", monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.45rem;
+  line-height: 1.25;
+  padding-inline: 1.25rem;
+  padding-block: 1.5rem 3rem;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 10;
+  background: repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0, rgba(0,0,0,0) 2px, rgba(0,0,0,0.22) 3px);
+}
+.wrap { max-width: 62rem; margin-inline: auto; }
+a { color: inherit; }
+:focus-visible { outline: 4px solid var(--yel); outline-offset: 4px; }
+
+.hud { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-family: var(--display); font-size: 0.65rem; line-height: 1.8; color: var(--ink); padding-bottom: 1.25rem; }
+.hud b { color: var(--yel); font-weight: 400; }
+
+.title { margin: 1rem 0 0; font-family: var(--display); font-weight: 400; font-size: clamp(1.45rem, 6.6vw, 3.4rem); line-height: 1.35; color: var(--ink); text-shadow: 4px 4px 0 var(--mag), 8px 8px 0 var(--black); min-width: 0; overflow-wrap: anywhere; }
+.title span { display: block; }
+.title .v { color: var(--cyan); }
+.intro { margin: 1.75rem 0 0; max-width: 34rem; color: var(--dim); font-size: 1.6rem; }
+.prompt { margin: 1.25rem 0 0; font-family: var(--display); font-size: 0.7rem; line-height: 1.8; color: var(--yel); }
+.prompt i { font-style: normal; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.group { --acc: var(--mag); margin-top: 3rem; }
+.group.web { --acc: var(--cyan); }
+.group.game { --acc: var(--grn); }
+.group h2 { display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; margin: 0 0 1.5rem; font-family: var(--display); font-weight: 400; font-size: 0.85rem; line-height: 1.6; color: var(--acc); }
+.group h2::before { content: ""; width: 16px; height: 16px; background: var(--acc); box-shadow: 4px 4px 0 var(--black); flex: none; }
+.group h2 em { font-style: normal; color: var(--dim); font-size: 0.6rem; }
+
+.work { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr) auto; gap: 1.5rem; align-items: center; padding: 1.25rem; margin-bottom: 1.75rem; background: var(--panel); text-decoration: none; color: var(--ink);
+  /* stepped pixel border */
+  box-shadow: 0 calc(var(--px) * -1) 0 0 var(--acc), 0 var(--px) 0 0 var(--acc), calc(var(--px) * -1) 0 0 0 var(--acc), var(--px) 0 0 0 var(--acc), 12px 12px 0 0 var(--black);
+  transition: transform 0.08s steps(2); }
+.work:hover, .work:focus-visible { transform: translate(-4px, -4px);
+  box-shadow: 0 calc(var(--px) * -1) 0 0 var(--yel), 0 var(--px) 0 0 var(--yel), calc(var(--px) * -1) 0 0 0 var(--yel), var(--px) 0 0 0 var(--yel), 16px 16px 0 0 var(--black); }
+
+.plate { aspect-ratio: 4 / 3; width: 100%; background: var(--well); display: block; box-shadow: 0 0 0 4px var(--black); }
+.plate svg { width: 100%; height: 100%; display: block; shape-rendering: crispEdges; }
+
+.body { min-width: 0; }
+.body h3 { margin: 0 0 0.75rem; font-family: var(--display); font-weight: 400; font-size: clamp(0.85rem, 2.6vw, 1.15rem); line-height: 1.6; color: var(--yel); text-transform: uppercase; overflow-wrap: anywhere; }
+.body p { margin: 0; color: var(--ink); max-width: 38rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.9rem 0 0; padding: 0; list-style: none; }
+.tags li { font-size: 1.15rem; line-height: 1; text-transform: uppercase; color: var(--bg); background: var(--acc); padding: 0.25rem 0.5rem 0.2rem; }
+
+.go { font-family: var(--display); font-size: 0.7rem; line-height: 1; color: var(--bg); background: var(--yel); padding: 0.9rem 1rem; white-space: nowrap; box-shadow: 4px 4px 0 var(--black); text-transform: uppercase; }
+.work:hover .go, .work:focus-visible .go { background: var(--acc); }
+.work:hover .go b, .work:focus-visible .go b { animation: blink 0.6s steps(1) infinite; }
+.go b { font-weight: 400; }
+
+/* CV sheet */
+.cv { --acc: var(--yel); scroll-margin-top: 1rem; }
+.sheet { background: var(--panel); padding: 1.5rem; display: grid; gap: 2rem;
+  box-shadow: 0 calc(var(--px) * -1) 0 0 var(--acc), 0 var(--px) 0 0 var(--acc), calc(var(--px) * -1) 0 0 0 var(--acc), var(--px) 0 0 0 var(--acc), 12px 12px 0 0 var(--black); }
+.sheet h3 { margin: 0 0 1rem; font-family: var(--display); font-weight: 400; font-size: 0.75rem; line-height: 1.6; color: var(--cyan); text-transform: uppercase; }
+.sheet dl { margin: 0; display: grid; gap: 1.25rem; }
+.entry { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 1.25rem; }
+.entry dt { font-family: var(--display); font-size: 0.6rem; line-height: 1.8; color: var(--yel); }
+.entry dd { margin: 0; min-width: 0; }
+.entry dd b { display: block; font-weight: 400; color: var(--ink); font-size: 1.6rem; line-height: 1.15; }
+.entry dd span { display: block; color: var(--dim); margin-top: 0.15rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+.chips li { font-size: 1.3rem; line-height: 1; color: var(--bg); background: var(--grn); padding: 0.3rem 0.6rem 0.25rem; text-transform: uppercase; }
+.cvlink { color: var(--yel); text-decoration: none; }
+.cvlink:hover, .cvlink:focus-visible { background: var(--yel); color: var(--bg); }
+.doc { margin: 0; display: grid; gap: 0.9rem; justify-items: start; }
+.doc img { display: block; width: 100%; max-width: 38rem; height: auto; box-shadow: 0 0 0 4px var(--black), 10px 10px 0 4px var(--black); background: var(--well); }
+.doc figcaption { font-family: var(--display); font-size: 0.6rem; line-height: 1.8; color: var(--dim); }
+.entry ul { margin: 0.6rem 0 0; padding: 0; list-style: none; }
+.entry li { position: relative; padding-left: 1.1rem; margin-top: 0.2rem; }
+.entry li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 6px; height: 6px; background: var(--acc); }
+.entry dd i { font-style: normal; color: var(--cyan); }
+.who { margin: 0 0 0.25rem; font-family: var(--display); font-size: 0.65rem; line-height: 1.8; color: var(--dim); }
+.meters { margin: 1.25rem 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 0.9rem 2rem; }
+.meters li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.meter { flex: none; display: block; width: 86px; height: 14px; position: relative; background: repeating-linear-gradient(90deg, var(--well) 0 14px, transparent 14px 18px); }
+.meter::after { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--n) * 18px - 4px); background: repeating-linear-gradient(90deg, var(--yel) 0 14px, transparent 14px 18px); }
+
+footer { margin-top: 3rem; padding-top: 1.5rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-family: var(--display); font-size: 0.6rem; line-height: 1.8; color: var(--dim); border-top: 4px dashed var(--panel); }
+
+@media (max-width: 42rem) {
+  .work { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .plate { max-width: 11rem; }
+  .go { justify-self: start; }
+  .entry { grid-template-columns: minmax(0, 1fr); gap: 0.35rem; }
+  .sheet { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prompt i, .work:hover .go b, .work:focus-visible .go b { animation: none; }
+  .work { transition: none; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="hud"><span>PLAYER 1 <b>ANASTASIJA</b></span><span>PROJECTS <b>07</b></span><span>DESIGN 3 &middot; WEB 3 &middot; GAME 1</span><a class="cvlink" href="#cv">&#9654; CV</a></div>
+    <h1 class="title"><span>Anastasija</span><span class="v">Vitas</span></h1>
+    <p class="intro"></p>
+    <p class="prompt">SELECT A PROJECT <i>&#9608;</i></p>
+  </header>
+
+  <section class="group design" aria-labelledby="g-design">
+    <h2 id="g-design">DESIGN <em>FIGMA</em></h2>
+
+    <a class="work" href="https://www.figma.com/design/nk25eRwm6z2qhulRB962LH/Romeo?m=auto&amp;t=4yjaEznBceIVinmI-1" target="_blank" rel="noopener">
+      <span class="plate" data-art="heart" role="img" aria-label="Pixel heart"></span>
+      <span class="body">
+        <h3>Romeo</h3>
+        <p>UI design for a minigame inspired by Puž Theater's play "Julija i Romeo". A part of a minigame series for Puž Theater that I worked on.</p>
+        <ul class="tags"><li>Figma</li><li>Design file</li></ul>
+      </span>
+      <span class="go"><b>&#9654;</b> Open</span>
+    </a>
+
+    <a class="work" href="https://www.figma.com/design/HQP8Hc4ZR6I2fDovzJb8ED/Theatre?m=auto&amp;t=AW88XX2pGpe9BHuz-1" target="_blank" rel="noopener">
+      <span class="plate" data-art="stage" role="img" aria-label="Pixel stage with curtains"></span>
+      <span class="body">
+        <h3>Theater</h3>
+        <p>UI design for a minigame inspired by Puž Theater's plays. A part of a minigame series for Puž Theater.</p>
+        <ul class="tags"><li>Figma</li><li>Design file</li></ul>
+      </span>
+      <span class="go"><b>&#9654;</b> Open</span>
+    </a>
+
+    <a class="work" href="https://www.figma.com/proto/RVfzjbfWgrGgLxSZLMy7D3?node-id=0-1&amp;t=AW88XX2pGpe9BHuz-6" target="_blank" rel="noopener">
+      <span class="plate" data-art="proto" role="img" aria-label="Two pixel screens joined by an arrow and a cursor"></span>
+      <span class="body">
+        <h3>MuscleCraft</h3>
+        <p>An interactive prototype in Figma. UI done for an amateur project - concept design for a gym membership app that gamefies exercise through workout "levels"</p>
+        <ul class="tags"><li>Figma</li><li>Prototype</li></ul>
+      </span>
+      <span class="go"><b>&#9654;</b> Open</span>
+    </a>
+  </section>
+
+  <section class="group web" aria-labelledby="g-web">
+    <h2 id="g-web">WEB <em>SITES</em></h2>
+
+    <a class="work" href="https://morw3nna.github.io/yamamoto/" target="_blank" rel="noopener">
+      <span class="plate" data-art="scroll" role="img" aria-label="Pixel hanging scroll with a red sun"></span>
+      <span class="body">
+        <h3>Takato Yamamoto</h3>
+        <p>A one-page site about the Japanese artist and his Heisei aestheticism style. It has a biography table, five works with notes, and a gallery. Done as a highschool project</p>
+        <ul class="tags"><li>HTML &amp; CSS</li><li>GitHub Pages</li><li>Art</li></ul>
+      </span>
+      <span class="go"><b>&#9654;</b> Visit</span>
+    </a>
+
+    <a class="work" href="https://sites.google.com/view/1chigo/home" target="_blank" rel="noopener">
+      <span class="plate" data-art="waves" role="img" aria-label="Pixel pattern of ocean waves"></span>
+      <span class="body">
+        <h3>Ukiyo-e</h3>
+        <p>A Google Sites project on the Japanese art of woodblock printing and painting, from its start in 17th-century Edo to how a print is made. It has a home page and a history page. Done as a highschool project</p>
+        <ul class="tags"><li>Google Sites</li><li>Japanese art</li><li>English</li></ul>
+      </span>
+      <span class="go"><b>&#9654;</b> Visit</span>
+    </a>
+
+    <a class="work" href="https://alas.matf.bg.ac.rs/~mi23207/index.html" target="_blank" rel="noopener">
+      <span class="plate" data-art="plot" role="img" aria-label="Pixel sine curve on axes"></span>
+      <span class="body">
+        <h3>Faculty of Mathematics page</h3>
+        <p>A personal page on the University of Belgrade MatF server. It has an introduction, a course list, and sub-pages for technical and scientific writing and audio.</p>
+        <ul class="tags"><li>HTML</li><li>MATF, Belgrade</li><li>Serbian</li></ul>
+      </span>
+      <span class="go"><b>&#9654;</b> Visit</span>
+    </a>
+  </section>
+
+  <section class="group game" aria-labelledby="g-game">
+    <h2 id="g-game">GAME <em>UNITY</em></h2>
+
+    <a class="work" href="https://petardev.itch.io/cyberhaze" target="_blank" rel="noopener">
+      <span class="plate" data-art="portal" role="img" aria-label="Pixel glowing portal door"></span>
+      <span class="body">
+        <h3>CyberHaze</h3>
+        <p>A short first-person horror game about interdimensional doors and portals. It was a submission to Brackeys Game Jam 2024.1 and a first Unity game. Free to download on itch.io.</p>
+        <ul class="tags"><li>Unity</li><li>Game jam</li><li>Cyberpunk</li><li>Horror</li></ul>
+      </span>
+      <span class="go"><b>&#9654;</b> Play</span>
+    </a>
+  </section>
+
+  <section class="group cv" id="cv" aria-labelledby="g-cv">
+    <h2 id="g-cv">CV <em>PLAYER STATS</em></h2>
+    <div class="sheet">
+      <div>
+        <p class="who">STUDENT &middot; BELGRADE &middot; soren837@gmail.com</p>
+      </div>
+
+      <div>
+        <h3>Work experience</h3>
+        <dl>
+          <div class="entry">
+            <dt>AUG 2026 &ndash; NOW</dt>
+            <dd><b>Sales Representative</b><span>Leading Edge Corporation d.o.o., Belgrade</span>
+              <ul>
+                <li>Communication with clients in English</li>
+                <li>Marketing the company's services with deep understanding of stock market, investing, trading and other relevant terminology</li>
+                <li>Data input and reporting</li>
+                <li>Working in a high pressure environment where adaptability is key</li>
+              </ul></dd>
+          </div>
+          <div class="entry">
+            <dt>MAR 2026 &ndash; MAY 2026</dt>
+            <dd><b>Basic Administrator, Digital Marketing</b><span>Aspermont Media &amp; Technology d.o.o., Belgrade</span>
+              <ul>
+                <li><i>Digital marketing:</i> Google Analytics, Google Ads, upkeep of all Aspermont websites, making and managing digital campaigns, organizing events and activities in Aspermont, including Click for Serbia</li>
+                <li><i>IT support:</i> correspondence with software suppliers, first level IT support</li>
+                <li><i>Administration:</i> managing the project "Click for Serbia", CRM, organisation of trip plans for clients and business partners, involved and up to date on all administrative jobs</li>
+              </ul></dd>
+          </div>
+          <div class="entry">
+            <dt>MAR 2025 &ndash; MAR 2026</dt>
+            <dd><b>ATM Support Representative</b><span>NCR Atleos, Novi Beograd</span>
+              <ul>
+                <li>Providing personal and professional service under pressure</li>
+                <li>Managing "tickets" on an in-house database, ensuring a high level of quality via remote tools to ensure first fix</li>
+                <li>Diagnosing faults and following the correct course of action</li>
+                <li>Multitasking and making key decisions</li>
+                <li>Managing non dispensing ATMs, making outbound calls, managing multiple mailboxes</li>
+              </ul></dd>
+          </div>
+          <div class="entry">
+            <dt>JUN 2024 &ndash; SEP 2024</dt>
+            <dd><b>Game Designer</b><span>Theatre "Puž", Belgrade</span>
+              <ul>
+                <li>Worked on UI design, animation, environment and character creation for mini-games for interactive tablets</li>
+              </ul></dd>
+          </div>
+          <div class="entry">
+            <dt>WINTERS 2021 &ndash; 2024</dt>
+            <dd><b>New Year decorations</b><span>Business complex "Airport City", Novi Beograd &middot; December to January, 2021, 2022 and 2023</span>
+              <ul>
+                <li>Handling New Year's decorations in entrance halls of buildings of the business complex</li>
+                <li>Team work in a group of 6 or more people</li>
+              </ul></dd>
+          </div>
+          <div class="entry">
+            <dt>APR 2022 &ndash; JUL 2022</dt>
+            <dd><b>Seller/Cashier</b><span>McDonald's Delta City, Novi Beograd</span>
+              <ul>
+                <li>Work on the cash register and in the kitchen making orders</li>
+                <li>Customer service</li>
+              </ul></dd>
+          </div>
+        </dl>
+      </div>
+
+      <div>
+        <h3>Education and qualifications</h3>
+        <dl>
+          <div class="entry">
+            <dt>OCT 2023 &ndash; 2026</dt>
+            <dd><b>Faculty of Mathematics, University of Belgrade</b><span>Bachelor studies, Informatics</span>
+              <ul>
+                <li>Third year student, not yet graduated</li>
+              </ul></dd>
+          </div>
+          <div class="entry">
+            <dt>SEP 2019 &ndash; JUN 2023</dt>
+            <dd><b>X Gymnasium "Mihajlo Pupin", Novi Beograd</b><span>Bilingual English-Serbian class</span>
+              <ul>
+                <li>Graduated high school (fourth year)</li>
+                <li>Member of the journalism club</li>
+              </ul></dd>
+          </div>
+        </dl>
+      </div>
+
+      <div>
+        <h3>Skills</h3>
+        <dl>
+          <div class="entry">
+            <dt>BUILD</dt>
+            <dd>Web design using Google Sites, WordPress, HTML, CSS and JavaScript</dd>
+          </div>
+          <div class="entry">
+            <dt>GAMES</dt>
+            <dd>Making videogames in Unity</dd>
+          </div>
+          <div class="entry">
+            <dt>DESIGN</dt>
+            <dd>Editing programs such as Figma and Adobe Illustrator for graphic and game design</dd>
+          </div>
+        </dl>
+        <ul class="meters">
+          <li>Microsoft Office <span class="meter" style="--n:5" role="img" aria-label="5 out of 5"></span></li>
+          <li>HTML <span class="meter" style="--n:5" role="img" aria-label="5 out of 5"></span></li>
+          <li>Java <span class="meter" style="--n:4" role="img" aria-label="4 out of 5"></span></li>
+          <li>C/C++ <span class="meter" style="--n:4" role="img" aria-label="4 out of 5"></span></li>
+          <li>English <span class="meter" style="--n:5" role="img" aria-label="5 out of 5"></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>ANASTASIJA VITAS</span>
+    <span>DESIGN &middot; WEB &middot; GAMES</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var C = { c: '#29F0FF', m: '#FF3D9A', w: '#FFFFFF', y: '#FFD84A', g: '#5DFF6E', o: '#FF8A3D', d: '#B0206A', b: '#3B5BFF' };
+  var ART = {
+    heart: [
+      "................",
+      "...mmm....mmm...",
+      "..mmmmm..mmmmm..",
+      "..mwwmmmmmmmmm..",
+      "..mwmmmmmmmmmm..",
+      "..mmmmmmmmmmmm..",
+      "...mmmmmmmmmm...",
+      "....mmmmmmmm....",
+      ".....mmmmmm.....",
+      "......mmmm......",
+      ".......mm.......",
+      "................"],
+    stage: [
+      "yyyyyyyyyyyyyyyy",
+      "mdmdm......mdmdm",
+      "mdmdm......mdmdm",
+      "mdmd........dmdm",
+      "mdmd........dmdm",
+      "mdm..........mdm",
+      "mdm....yy....mdm",
+      "mdm..........mdm",
+      "md............dm",
+      "md............dm",
+      "oooooooooooooooo",
+      "oooooooooooooooo"],
+    proto: [
+      "................",
+      ".ccccc....ccccc.",
+      ".cwwwc..y.cwwwc.",
+      ".cwwwcyyyycwwwc.",
+      ".cwwwc..y.cwwwc.",
+      ".cwwwc....cwwwc.",
+      ".ccccc....ccccc.",
+      "................",
+      "........m.......",
+      "........mm......",
+      "........mmm.....",
+      "........mm......"],
+    scroll: [
+      "................",
+      "....yyyyyyyy....",
+      ".....wwwwww.....",
+      ".....wwmmww.....",
+      ".....wmmmmw.....",
+      ".....wmmmmw.....",
+      ".....wwmmww.....",
+      ".....wwwwww.....",
+      ".....wcccww.....",
+      ".....wwwwww.....",
+      ".....wwcccw.....",
+      "....yyyyyyyy...."],
+    waves: [
+      "..wwww....wwww..",
+      ".wccccw..wccccw.",
+      "wcc..ccwwcc..ccw",
+      "c..bb..cc..bb..c",
+      "..wwww....wwww..",
+      ".wccccw..wccccw.",
+      "wcc..ccwwcc..ccw",
+      "c..bb..cc..bb..c",
+      "..wwww....wwww..",
+      ".wccccw..wccccw.",
+      "wcc..ccwwcc..ccw",
+      "c..bb..cc..bb..c"],
+    plot: [
+      "g...............",
+      "g...............",
+      "g...yy..........",
+      "g..y..y.........",
+      "g.y....y........",
+      "g...............",
+      "gyggggggyggggggy",
+      "g...............",
+      "g........y....y.",
+      "g.........y..y..",
+      "g..........yy...",
+      "g..............."],
+    portal: [
+      "................",
+      "....cccccccc....",
+      "....cmmmmmmc....",
+      "....cmwwwwmc....",
+      "....cmwmmwmc....",
+      "....cmwmmwmc....",
+      "....cmwwwwmc....",
+      "....cmmmmmmc....",
+      "....cmmmmmmc....",
+      "....cccccccc....",
+      "..yy........yy..",
+      "................"]
+  };
+  document.querySelectorAll('.plate[data-art]').forEach(function (el) {
+    var rows = ART[el.getAttribute('data-art')];
+    if (!rows) return;
+    var s = '<svg viewBox="0 0 16 12" preserveAspectRatio="xMidYMid meet" aria-hidden="true">';
+    for (var y = 0; y < rows.length; y++) {
+      for (var x = 0; x < rows[y].length; x++) {
+        var k = rows[y][x];
+        if (C[k]) s += '<rect x="' + x + '" y="' + y + '" width="1" height="1" fill="' + C[k] + '"/>';
+      }
+    }
+    el.innerHTML = s + '</svg>';
+  });
+})();
+</script>
