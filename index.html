@@ -57,7 +57,7 @@ a { color: inherit; }
 .group h2 em { font-style: normal; color: var(--dim); font-size: 0.6rem; }
 
 .work { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr) auto; gap: 1.5rem; align-items: center; padding: 1.25rem; margin-bottom: 1.75rem; background: var(--panel); text-decoration: none; color: var(--ink);
-  /* stepped pixel border */
+
   box-shadow: 0 calc(var(--px) * -1) 0 0 var(--acc), 0 var(--px) 0 0 var(--acc), calc(var(--px) * -1) 0 0 0 var(--acc), var(--px) 0 0 0 var(--acc), 12px 12px 0 0 var(--black);
   transition: transform 0.08s steps(2); }
 .work:hover, .work:focus-visible { transform: translate(-4px, -4px);
@@ -77,7 +77,7 @@ a { color: inherit; }
 .work:hover .go b, .work:focus-visible .go b { animation: blink 0.6s steps(1) infinite; }
 .go b { font-weight: 400; }
 
-/* CV sheet */
+  
 .cv { --acc: var(--yel); scroll-margin-top: 1rem; }
 .sheet { background: var(--panel); padding: 1.5rem; display: grid; gap: 2rem;
   box-shadow: 0 calc(var(--px) * -1) 0 0 var(--acc), 0 var(--px) 0 0 var(--acc), calc(var(--px) * -1) 0 0 0 var(--acc), var(--px) 0 0 0 var(--acc), 12px 12px 0 0 var(--black); }
